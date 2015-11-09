@@ -26,7 +26,7 @@ public class EnemiesList {
 
     Random rnd = new Random();
     public void tick(){
-        int randomX = rnd.nextInt(500);
+        int randomX = rnd.nextInt(700);
         for (int i = 0; i < enemies.size(); i++) {
             tempEnemy = enemies.get(i);
             tempEnemy.tick();
