@@ -26,7 +26,7 @@ public class Game implements Runnable {
     //OBJECTS
     private Player player;
     private EnemiesList enemies;
-    private LinkedList<Enemy> e = new LinkedList<>();
+
     // animation
     //private final int w = 110;
     //private final int h = 100;
@@ -51,6 +51,7 @@ public class Game implements Runnable {
 
     //UPDATE
     private void tick(){
+
         this.player.tick();
         enemies.tick();
 

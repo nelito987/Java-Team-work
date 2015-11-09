@@ -6,12 +6,14 @@ import gfx.ImageLoader;
 import gfx.SpriteSheet;
 
 import java.awt.*;
+import java.util.LinkedList;
 
 
 public class Enemy {
-    public int x;
-    private int y, width, height, velocity;
+    public int y;
+    private int x, width, height, velocity;
     private SpriteSheet sh;
+
 
 
     private int cropWidth;
@@ -32,6 +34,7 @@ public class Enemy {
     public void tick(){
 
         this.y += this.velocity;
+
 
     }
 

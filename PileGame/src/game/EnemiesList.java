@@ -19,14 +19,26 @@ public class EnemiesList {
     public EnemiesList() {
 
         addEnemy(new Enemy(100, 0, 110, 110));
-
+        addEnemy(new Enemy(200, 0, 110, 110));
+        addEnemy(new Enemy(300, 0, 110, 110));
     }
 
+
+    Random rnd = new Random();
     public void tick(){
+        int randomX = rnd.nextInt(500);
         for (int i = 0; i < enemies.size(); i++) {
             tempEnemy = enemies.get(i);
             tempEnemy.tick();
+            if (tempEnemy.y == 500){
+                removeEnemy(tempEnemy);
+            }
+            if (enemies.size() < 10){
+                addEnemy(new Enemy(randomX, 0, 110,110));
+
+            }
         }
+//        addEnemy(new Enemy(100, 0, 110, 110));
     }
 
     public void render(Graphics g){
