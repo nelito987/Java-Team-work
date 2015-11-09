@@ -22,7 +22,7 @@ public class Display extends Canvas{
     private void createFrame(){
         Dimension dimensions = new Dimension(this.width, this.height);
         this.frame = new JFrame(this.title);
-        //this.frame.setSize(this.width, this.height);
+        this.frame.setSize(this.width, this.height);
         this.frame.setVisible(true);
         this.frame.setFocusable(true);
         this.frame.setResizable(false);

@@ -23,6 +23,7 @@ public class Game implements Runnable {
 
     private Player player;
     private InputHandler ih;
+    private Enemy enemy;
 
     // animation
     //private final int w = 110;
@@ -41,20 +42,16 @@ public class Game implements Runnable {
         this.ih = new InputHandler(this.display);
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
         Assets.init();
-
         this.player = new Player(300, 450, 110, 100);
+        this.enemy = new Enemy(100, 100,110,110);
 
     }
 
     private void tick(){
 
         this.player.tick();
+        this.enemy.tick();
 
-        // animation
-        //x++;
-        //if(x >= 4){
-        //    x = 0;
-        //}
     }
 
     private void render(){
@@ -68,12 +65,11 @@ public class Game implements Runnable {
         this.g = this.bs.getDrawGraphics();
         this.g.clearRect(0, 0, this.width, this.height);
         //START DRAW
-
         this.g.drawImage(ImageLoader.load("/images/sky.jpg"),0,0,null);
 
         this.player.render(g);
+        this.enemy.render(g);
         //this.g.drawImage(this.sh.crop(0+ x*110,0,110,100), 100, 200, null);
-
         //END DRAW
         this.bs.show();
         this.g.dispose();

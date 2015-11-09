@@ -32,6 +32,7 @@ public class Player {
     public Player(int x, int y, int width, int height) {
         this(x,y,width,height,"");
     }
+
     public void tick(){
         if (isMovingDown){
             this.y += this.velocity;
