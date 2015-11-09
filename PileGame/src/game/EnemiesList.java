@@ -30,7 +30,7 @@ public class EnemiesList {
         for (int i = 0; i < enemies.size(); i++) {
             tempEnemy = enemies.get(i);
             tempEnemy.tick();
-            if (tempEnemy.y == 500){
+            if (tempEnemy.y >= 500){
                 removeEnemy(tempEnemy);
             }
             if (enemies.size() < 10){

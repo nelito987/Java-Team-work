@@ -7,6 +7,7 @@ import gfx.SpriteSheet;
 
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Enemy {
@@ -25,7 +26,8 @@ public class Enemy {
         this.width = width;
         this.height = height;
 
-        this.velocity = 5;
+        int rand = ThreadLocalRandom.current().nextInt(5,10);
+        this.velocity = rand;
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
         this.cropWidth = 0;
     }
