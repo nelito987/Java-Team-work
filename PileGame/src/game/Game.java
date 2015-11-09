@@ -7,6 +7,7 @@ import gfx.SpriteSheet;
 
 import java.awt.*;
 import java.awt.image.BufferStrategy;
+import java.util.LinkedList;
 
 public class Game implements Runnable {
     private String title;
@@ -20,11 +21,12 @@ public class Game implements Runnable {
     private Graphics g;
     private SpriteSheet sh;
 
-
-    private Player player;
     private InputHandler ih;
-    private Enemy enemy;
 
+    //OBJECTS
+    private Player player;
+    private EnemiesList enemies;
+    private LinkedList<Enemy> e = new LinkedList<>();
     // animation
     //private final int w = 110;
     //private final int h = 100;
@@ -43,17 +45,18 @@ public class Game implements Runnable {
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
         Assets.init();
         this.player = new Player(300, 450, 110, 100);
-        this.enemy = new Enemy(100, 100,110,110);
+        enemies = new EnemiesList();
 
     }
 
+    //UPDATE
     private void tick(){
-
         this.player.tick();
-        this.enemy.tick();
+        enemies.tick();
 
     }
 
+    //DRAW
     private void render(){
         this.bs = this.display.getCanvas().getBufferStrategy();
 
@@ -67,10 +70,10 @@ public class Game implements Runnable {
         //START DRAW
         this.g.drawImage(ImageLoader.load("/images/sky.jpg"),0,0,null);
 
-        this.player.render(g);
-        this.enemy.render(g);
-        //this.g.drawImage(this.sh.crop(0+ x*110,0,110,100), 100, 200, null);
+        this.player.render(g); //draw player
+        enemies.render(g); // draw enemies
         //END DRAW
+
         this.bs.show();
         this.g.dispose();
     }
@@ -79,18 +82,12 @@ public class Game implements Runnable {
     public void run(){
             this.init();
 
-        //while (isRunning){
-        //    tick();
-        //    render();
-        //}
-
             int fps = 30;
             double ticksPerFrame = 1_000_000_000/fps;
             double delta = 0;
             long now;
             long lastTimeTicked = System.nanoTime();
-        //    long timer = 0;
-        //    int ticks = 0;
+
 
             while(isRunning){
                 now = System.nanoTime();
@@ -109,6 +106,7 @@ public class Game implements Runnable {
         this.stop();
     }
 
+    //start game function
     public synchronized void start() {
         if(!this.isRunning){
             this.isRunning = true;
@@ -117,6 +115,7 @@ public class Game implements Runnable {
         }
     }
 
+    //end game function
     public synchronized void stop(){
         if(this.isRunning){
             try{

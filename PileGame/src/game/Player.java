@@ -16,6 +16,7 @@ public class Player {
 
     public static boolean isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
 
+    //player constructor
     public Player(int x, int y, int width, int height, String name) {
         this.x = x;
         this.y = y;
@@ -33,6 +34,7 @@ public class Player {
         this(x,y,width,height,"");
     }
 
+    //update function
     public void tick(){
         if (isMovingDown){
             this.y += this.velocity;
@@ -61,6 +63,7 @@ public class Player {
 
     }
 
+    //draw function
     public void render(Graphics g){
         g.drawImage(this.sh.crop(0 + this.cropWidth*this.width,0, this.width, this.height),this.x, this.y, null);
 
