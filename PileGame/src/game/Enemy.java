@@ -20,7 +20,7 @@ public class Enemy {
     private int cropWidth;
 
     //Enemies Constructor
-    public Enemy(int x, int y, int width, int height) {
+    public Enemy(int x, int y, int width, int height, String path) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -28,7 +28,7 @@ public class Enemy {
 
         int rand = ThreadLocalRandom.current().nextInt(5,10);
         this.velocity = rand;
-        this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
+        this.sh = new SpriteSheet(ImageLoader.load(path));
         this.cropWidth = 0;
     }
 

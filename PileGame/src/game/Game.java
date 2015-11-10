@@ -8,6 +8,7 @@ import gfx.SpriteSheet;
 import java.awt.*;
 import java.awt.image.BufferStrategy;
 import java.util.LinkedList;
+import java.util.Random;
 
 public class Game implements Runnable {
     private String title;
@@ -27,6 +28,10 @@ public class Game implements Runnable {
     private Player player;
     private EnemiesList enemies;
 
+    //Drop enemies
+    private Random rnd = new Random();
+    private int timeCounter = 0;
+    private int dropsCounter = 0;
     // animation
     //private final int w = 110;
     //private final int h = 100;
@@ -54,6 +59,30 @@ public class Game implements Runnable {
 
         this.player.tick();
         enemies.tick();
+        //this drops the enemies
+        timeCounter++;
+        if(timeCounter == 15){
+            int randomX = rnd.nextInt(700);
+            int typeOfEnemy = rnd.nextInt(2);
+            // I use this switch to randomly chose what kind of enemy it will drop.
+            switch (typeOfEnemy) {
+                case 0:
+                    enemies.addEnemy(new Enemy(randomX, 0, 61, 66, "/images/piggy2.png"));
+                    break;
+                case 1:
+                    enemies.addEnemy(new Enemy(randomX, 0, 61, 66, "/images/piggy.png"));
+
+                    break;
+            }
+            timeCounter = 0;
+            dropsCounter++;
+        }
+        //This drops the hearts
+        if(dropsCounter == 15){
+            int randomX = rnd.nextInt(700);
+            enemies.addEnemy(new Enemy(randomX, 0, 66, 61, "/images/heart.png"));
+            dropsCounter = 0;
+        }
 
     }
 
