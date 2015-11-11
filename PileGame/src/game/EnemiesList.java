@@ -18,7 +18,9 @@ public class EnemiesList {
 
     public EnemiesList() {
 
-        addEnemy(new Enemy(100, 0, 61, 66,"/images/piggy2.png"));
+        addEnemy(new Enemy(100, 0, 52, 56,"/images/pyggi3.png"));
+        addEnemy(new Enemy(100, 0, 58, 58,"/images/pingvin.png"));
+
 
     }
 

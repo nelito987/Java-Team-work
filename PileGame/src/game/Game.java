@@ -63,14 +63,18 @@ public class Game implements Runnable {
         timeCounter++;
         if(timeCounter == 15){
             int randomX = rnd.nextInt(700);
-            int typeOfEnemy = rnd.nextInt(2);
+            int typeOfEnemy = rnd.nextInt(3);
             // I use this switch to randomly chose what kind of enemy it will drop.
             switch (typeOfEnemy) {
                 case 0:
-                    enemies.addEnemy(new Enemy(randomX, 0, 61, 66, "/images/piggy2.png"));
+                    enemies.addEnemy(new Enemy(randomX, 0, 52, 56, "/images/pyggi3.png"));
                     break;
                 case 1:
-                    enemies.addEnemy(new Enemy(randomX, 0, 61, 66, "/images/piggy.png"));
+                    enemies.addEnemy(new Enemy(randomX, 0, 59, 50, "/images/slon.png"));
+
+                    break;
+                case 2:
+                    enemies.addEnemy(new Enemy(randomX, 0, 58, 58, "/images/pingvin.png"));
 
                     break;
             }
@@ -80,9 +84,11 @@ public class Game implements Runnable {
         //This drops the hearts
         if(dropsCounter == 15){
             int randomX = rnd.nextInt(700);
-            enemies.addEnemy(new Enemy(randomX, 0, 66, 61, "/images/heart.png"));
+            enemies.addEnemy(new Enemy(randomX, 0, 55, 56, "/images/heart2.png"));
+
             dropsCounter = 0;
         }
+
 
     }
 
