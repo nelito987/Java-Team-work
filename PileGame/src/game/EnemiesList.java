@@ -25,19 +25,26 @@ public class EnemiesList {
     }
 
 
-    public void tick(){
+    public void tick() {
 
         for (int i = 0; i < enemies.size(); i++) {
             tempEnemy = enemies.get(i);
             tempEnemy.tick();
-            if (tempEnemy.y >= 500){
+            if (tempEnemy.y >= 500) {
                 removeEnemy(tempEnemy);
             }
 
-        }
-//        addEnemy(new Enemy(100, 0, 110, 110));
-    }
+            if (Enemy.getBoundingBox().intersects(Player.getBoundingBox())){
+                removeEnemy(tempEnemy);
 
+            }
+
+//            if (tempEnemy.x == Player.x || tempEnemy.y == Player.y) {
+//            }
+
+//        addEnemy(new Enemy(100, 0, 110, 110));
+        }
+    }
     public void render(Graphics g){
         for (int i = 0; i < enemies.size(); i ++){
             tempEnemy = enemies.get(i);

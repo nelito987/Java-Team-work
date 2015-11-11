@@ -11,10 +11,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Enemy {
-    public int y;
-    private int x, width, height, velocity;
+    public int x, y;
+    private int width, height, velocity;
     private SpriteSheet sh;
 
+    private static Rectangle boundingBox;
+    public static Rectangle getBoundingBox() {return boundingBox;}
 
 
     private int cropWidth;
@@ -30,6 +32,8 @@ public class Enemy {
         this.velocity = rand;
         this.sh = new SpriteSheet(ImageLoader.load(path));
         this.cropWidth = 0;
+
+        boundingBox = new Rectangle(this.x, this.y, this.width, this.height);
     }
 
     //Update Function
@@ -37,6 +41,7 @@ public class Enemy {
 
         this.y += this.velocity;
 
+        boundingBox.setBounds(this.x, this.y, this.width, this.height);
 
     }
 

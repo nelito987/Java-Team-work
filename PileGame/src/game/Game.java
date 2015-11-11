@@ -108,6 +108,7 @@ public class Game implements Runnable {
 
         this.player.render(g); //draw player
         enemies.render(g); // draw enemies
+
         this.g.drawRect(this.player.getBoundingBox().x, //make boundingbox visible, it is NOT necessary for the game
             this.player.getBoundingBox().y,
             this.player.getBoundingBox().width,

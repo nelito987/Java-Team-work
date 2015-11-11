@@ -8,14 +8,15 @@ import java.awt.*;
 
 
 public class Player {
-    private int x, y, width, height, lives, velocity;
+    public static int x, y;
+    private int width, height, lives, velocity;
     private SpriteSheet sh;
     private String name; //for example if we want to keep score;
     
-    public Rectangle getBoundingBox() {
+    public static Rectangle getBoundingBox() {
         return boundingBox;
     }
-    private Rectangle boundingBox;
+    private static Rectangle boundingBox;
 
     private int cropWidth;
 
@@ -33,7 +34,7 @@ public class Player {
         this.lives = 3;
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
         this.cropWidth = 0;
-        this.boundingBox = new Rectangle(this.x +5, this.y +5, this.width - 10, this.height-10);
+        this.boundingBox = new Rectangle(this.x, this.y, this.width, this.height);
     }
 
     public Player(int x, int y, int width, int height) {
@@ -42,7 +43,7 @@ public class Player {
 
     //update function
     public void tick(){
-        this.boundingBox.setBounds(this.x +5, this.y +5, this.width - 10, this.height-10);
+        this.boundingBox.setBounds(this.x, this.y, this.width, this.height);
         if (isMovingDown){
             this.y += this.velocity;
         }else if(isMovingUp){
