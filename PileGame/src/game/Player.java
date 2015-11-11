@@ -11,6 +11,7 @@ public class Player {
     private int width, height, lives, velocity;
     private SpriteSheet sh;
     private String name; //for example if we want to keep score;
+    public  static  int health;
 
     //collision rectangle
     public static Rectangle getBoundingBox() {
@@ -23,13 +24,13 @@ public class Player {
     public static boolean isMovingUp, isMovingDown, isMovingLeft, isMovingRight;
 
     //player constructor
-    public Player(int x, int y, int width, int height, String name) {
+    public Player(int x, int y, int width, int height, String name,int health) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.name = name;
-
+        Player.health = health;
         this.velocity = 15;
         this.lives = 3;
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
@@ -38,9 +39,10 @@ public class Player {
         this.boundingBox = new Rectangle(this.x, this.y, this.width - 25, this.height - 25);
     }
 
-    public Player(int x, int y, int width, int height) {
-        this(x,y,width,height,"");
+    public Player(int x, int y, int width, int height, int health) {
+        this(x,y,width,height,"",health);
     }
+
 
     //update function
     public void tick(){

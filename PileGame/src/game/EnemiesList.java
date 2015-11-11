@@ -40,7 +40,7 @@ public class EnemiesList {
             //COLLISION
             if (Enemy.getBoundingBox().intersects(Player.getBoundingBox())){
                 removeEnemy(tempEnemy);
-
+                Player.health -=10;
             }
         }
     }

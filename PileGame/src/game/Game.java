@@ -49,14 +49,17 @@ public class Game implements Runnable {
         this.ih = new InputHandler(this.display);
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
         Assets.init();
-        this.player = new Player(300, 450, 110, 110);
+        this.player = new Player(300, 450, 110, 110,100);
         enemies = new EnemiesList();
 
     }
 
     //UPDATE
     private void tick(){
-
+        if (Player.health <=0){
+            isRunning = false;
+            // addEnding screen
+        }
         this.player.tick();
         enemies.tick();
         //this drops the enemies
@@ -108,6 +111,10 @@ public class Game implements Runnable {
 
         this.player.render(g); //draw player
         enemies.render(g); // draw enemies
+        g.setColor(Color.GRAY);
+        g.fillRect(5,5,100,10);
+        g.setColor(Color.GREEN);
+        g.fillRect(5,5,Player.health,10);
 
         //END DRAW
 
