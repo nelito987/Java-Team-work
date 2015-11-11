@@ -49,7 +49,7 @@ public class Game implements Runnable {
         this.ih = new InputHandler(this.display);
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
         Assets.init();
-        this.player = new Player(300, 450, 110, 100);
+        this.player = new Player(300, 450, 110, 110);
         enemies = new EnemiesList();
 
     }
@@ -109,10 +109,6 @@ public class Game implements Runnable {
         this.player.render(g); //draw player
         enemies.render(g); // draw enemies
 
-        this.g.drawRect(this.player.getBoundingBox().x, //make boundingbox visible, it is NOT necessary for the game
-            this.player.getBoundingBox().y,
-            this.player.getBoundingBox().width,
-            this.player.getBoundingBox().height);
         //END DRAW
 
         this.bs.show();

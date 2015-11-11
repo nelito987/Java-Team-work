@@ -11,6 +11,7 @@ import java.awt.event.ActionListener;
 public class Launcher {
     public static void main(String[] args) {
 
+        //launcher frame
         JFrame f = new JFrame("Launcher");
         f.setMaximumSize(new Dimension(360, 360));
         f.setPreferredSize(new Dimension(360, 360));
@@ -21,11 +22,6 @@ public class Launcher {
         f.setFocusable(true);
         f.setLocationRelativeTo(null);
 
-//        Canvas canvas = new Canvas();
-//        canvas.setMaximumSize(new Dimension(360,360));
-//        canvas.setMinimumSize(new Dimension(360,360));
-//        canvas.setPreferredSize(new Dimension(360,360));
-//        canvas.setVisible(true);
 
         JPanel p = new JPanel();
         p.setBackground(Color.BLUE);

@@ -15,9 +15,9 @@ public class Enemy {
     private int width, height, velocity;
     private SpriteSheet sh;
 
+    //Area for collision
     private static Rectangle boundingBox;
     public static Rectangle getBoundingBox() {return boundingBox;}
-
 
     private int cropWidth;
 
@@ -33,6 +33,7 @@ public class Enemy {
         this.sh = new SpriteSheet(ImageLoader.load(path));
         this.cropWidth = 0;
 
+        //creating the collision rectangle
         boundingBox = new Rectangle(this.x, this.y, this.width, this.height);
     }
 
@@ -41,6 +42,7 @@ public class Enemy {
 
         this.y += this.velocity;
 
+        //updating the collision rectangle
         boundingBox.setBounds(this.x, this.y, this.width, this.height);
 
     }

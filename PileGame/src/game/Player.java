@@ -1,6 +1,5 @@
 package game;
 
-import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
 
@@ -12,7 +11,8 @@ public class Player {
     private int width, height, lives, velocity;
     private SpriteSheet sh;
     private String name; //for example if we want to keep score;
-    
+
+    //collision rectangle
     public static Rectangle getBoundingBox() {
         return boundingBox;
     }
@@ -34,7 +34,8 @@ public class Player {
         this.lives = 3;
         this.sh = new SpriteSheet(ImageLoader.load("/images/spriteBird.png"));
         this.cropWidth = 0;
-        this.boundingBox = new Rectangle(this.x, this.y, this.width, this.height);
+        //creating the collision rectangle
+        this.boundingBox = new Rectangle(this.x, this.y, this.width - 25, this.height - 25);
     }
 
     public Player(int x, int y, int width, int height) {
@@ -43,7 +44,9 @@ public class Player {
 
     //update function
     public void tick(){
-        this.boundingBox.setBounds(this.x, this.y, this.width, this.height);
+
+        //updating the collision rectangle
+        this.boundingBox.setBounds(this.x, this.y, this.width - 25, this.height - 25);
         if (isMovingDown){
             this.y += this.velocity;
         }else if(isMovingUp){

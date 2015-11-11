@@ -30,19 +30,18 @@ public class EnemiesList {
         for (int i = 0; i < enemies.size(); i++) {
             tempEnemy = enemies.get(i);
             tempEnemy.tick();
-            if (tempEnemy.y >= 500) {
+
+            //Enemies going in the void
+            if (tempEnemy.y >= 550) {
                 removeEnemy(tempEnemy);
             }
 
+
+            //COLLISION
             if (Enemy.getBoundingBox().intersects(Player.getBoundingBox())){
                 removeEnemy(tempEnemy);
 
             }
-
-//            if (tempEnemy.x == Player.x || tempEnemy.y == Player.y) {
-//            }
-
-//        addEnemy(new Enemy(100, 0, 110, 110));
         }
     }
     public void render(Graphics g){
