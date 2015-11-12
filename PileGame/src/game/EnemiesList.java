@@ -13,7 +13,9 @@ import java.util.concurrent.ThreadLocalRandom;
 public class EnemiesList {
     LinkedList<Enemy> enemies = new LinkedList<>();
 
+
     Enemy tempEnemy;
+
 
 
     public EnemiesList() {
@@ -23,6 +25,8 @@ public class EnemiesList {
 
 
     }
+
+
 
 
     public void tick() {
@@ -43,6 +47,7 @@ public class EnemiesList {
                 Player.health -=10;
             }
         }
+
     }
     public void render(Graphics g){
         for (int i = 0; i < enemies.size(); i ++){
@@ -52,6 +57,7 @@ public class EnemiesList {
         }
     }
 
+
     public void addEnemy(Enemy enemy){
 
         enemies.add(enemy);
@@ -60,4 +66,7 @@ public class EnemiesList {
     public void removeEnemy(Enemy enemy){
         enemies.remove(enemy);
     }
+
+
+
 }

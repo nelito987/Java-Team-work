@@ -1,12 +1,15 @@
 package game;
 
+import com.sun.prism.*;
 import display.Display;
 import gfx.Assets;
 import gfx.ImageLoader;
 import gfx.SpriteSheet;
 
 import java.awt.*;
+import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.ImageProducer;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -26,7 +29,10 @@ public class Game implements Runnable {
 
     //OBJECTS
     private Player player;
+
     private EnemiesList enemies;
+
+    private BonusList bonuses;
 
     //Drop enemies
     private Random rnd = new Random();
@@ -51,20 +57,27 @@ public class Game implements Runnable {
         Assets.init();
         this.player = new Player(300, 450, 110, 110,100);
         enemies = new EnemiesList();
+        bonuses = new BonusList();
 
     }
 
     //UPDATE
     private void tick(){
         if (Player.health <=0){
+
             isRunning = false;
+
+
+
             // addEnding screen
         }
         this.player.tick();
         enemies.tick();
+        bonuses.tick();
+
         //this drops the enemies
         timeCounter++;
-        if(timeCounter == 15){
+        if(timeCounter == 5){
             int randomX = rnd.nextInt(700);
             int typeOfEnemy = rnd.nextInt(3);
             // I use this switch to randomly chose what kind of enemy it will drop.
@@ -80,23 +93,42 @@ public class Game implements Runnable {
                     enemies.addEnemy(new Enemy(randomX, 0, 58, 58, "/images/pingvin.png"));
 
                     break;
+
             }
             timeCounter = 0;
-            dropsCounter++;
-        }
-        //This drops the hearts
-        if(dropsCounter == 15){
-            int randomX = rnd.nextInt(700);
-            enemies.addEnemy(new Enemy(randomX, 0, 55, 56, "/images/heart2.png"));
+            dropsCounter+=2;
 
-            dropsCounter = 0;
+
         }
+        //if(timeCounter == 15){
+        //    int randomX = rnd.nextInt(700);
+//
+        //    int  typeOfBonus = rnd.nextInt(2);
+        //    switch (typeOfBonus){
+        //        case  0 :
+        //            bonuses.addBonus(new Bonus(randomX, 0 ,55, 56,"/images/heart2.png"));
+        //        case  1 :
+        //            bonuses.addBonus(new Bonus(randomX, 0 ,51, 51,"/images/diamand.png"));
+        //    }
+        //    timeCounter = 0;
+        //    dropsCounter++;
+        //}
+
+
+        //This drops the hearts
+      if(dropsCounter == 20){
+          int randomX = rnd.nextInt(700);
+         //enemies.addEnemy(new Enemy(randomX, 0, 55, 56, "/images/heart2.png"));
+         bonuses.addBonus(new Bonus(randomX, 0 ,55, 56,"/images/heart2.png"));
+
+          dropsCounter = 0;
+      }
 
 
     }
 
     //DRAW
-    private void render(){
+    public  void render(){
         this.bs = this.display.getCanvas().getBufferStrategy();
 
         if(this.bs == null){
@@ -108,9 +140,11 @@ public class Game implements Runnable {
         this.g.clearRect(0, 0, this.width, this.height);
         //START DRAW
         this.g.drawImage(ImageLoader.load("/images/sky.jpg"),0,0,null);
-
+        //g.drawImage(ImageLoader.load("/images/gameover.png"),0,0,null);
         this.player.render(g); //draw player
-        enemies.render(g); // draw enemies
+        enemies.render(g);
+        bonuses.render(g);
+
         g.setColor(Color.GRAY);
         g.fillRect(5,5,100,10);
         g.setColor(Color.GREEN);
